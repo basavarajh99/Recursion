@@ -1,3 +1,4 @@
+//TC: O(2^n)
 f(i, arr)
 {
   if(i>=arr.size()) return;
