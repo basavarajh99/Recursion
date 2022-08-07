@@ -1,10 +1,24 @@
 //TC: O(2^n)
-f(i, arr)
+void print(int i, vector<int> v, int s, int sum, int arr[], int n)
 {
-  if(i>=arr.size()) return;
+  if(i==n)
+  {
+    if(s==sum)
+    {
+      for(auto it : v)
+        cout<<it;
+      
+      return;
+    }
+  }
   
-  arr.push_back(arr[i);
-  f(i+1, arr);//take
-  arr.remove(arr[i]);
-  f(i+1, arr);//not take
+  //pick
+  v.push_back(arr[i]);
+  s+=arr[i];
+  print(i+1, v, s, sum, arr, n);
+  
+  //not pick
+   v.pop_back(arr[i]);
+  s-=arr[i];
+  print(i+1, v, s, sum, arr, n);
 }
