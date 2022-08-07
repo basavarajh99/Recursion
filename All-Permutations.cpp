@@ -27,3 +27,27 @@ void solve(vector<int>& nums, vector<vector<int>>& ans, vector<int>& store, vect
         solve(nums, ans, store, freq);
         return ans;
     }
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //space optimized, using swap()
+   void solve(int j, vector<int>& nums, vector<vector<int>>& ans)
+    {
+        if(j==nums.size()) 
+        {
+            ans.push_back(nums);
+            return;
+        }
+        
+        for(int i=j; i<nums.size(); i++)
+        {
+                swap(nums[i], nums[j]);
+                solve(j+1, nums, ans);
+                swap(nums[j], nums[i]);
+        }
+    }
+    
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        solve(0, nums, ans);
+        return ans;
+    }
+    
