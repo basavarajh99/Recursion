@@ -1,4 +1,5 @@
- bool isSafe(int node, int color[], int n, bool graph[][101], int newcolor)
+//TC: O(n^m)
+bool isSafe(int node, int color[], int n, bool graph[][101], int newcolor)
     {
         for(int j=0; j<n; j++)
             if(j!=node and graph[j][node]==1 and color[j]==newcolor) //check for adjecent node color
