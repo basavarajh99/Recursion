@@ -53,3 +53,38 @@ class Solution{
         return ans;
     }
 };
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //efficient
+    void solve(int i, int j, vector<string>& ans, string move, vector<vector<int>> &m, int n, vector<vector<int>> &vis, int di[], int dj[])
+    {
+        if(i==n-1 and j == n-1)
+        {
+            ans.push_back(move);
+            return;
+        }
+        
+        string dir = "DLRU"; //lexicographical
+        
+        for(int k=0; k<4; k++)
+        {
+            int nexti = i+di[k];
+            int nextj = j+dj[k];
+            
+            if(nexti >= 0 and nextj >= 0 and nexti < n and nextj < n and !vis[nexti][nextj] and m[nexti][nextj])
+                {
+                    vis[i][j] = 1;
+                    solve(nexti, nextj, ans, move+dir[k], m, n, vis, di, dj);
+                    vis[i][j] = 0;
+                }
+        }
+    }
+    
+    vector<string> findPath(vector<vector<int>> &m, int n) {
+        // Your code goes here
+        vector<string> ans;
+        vector<vector<int>>vis(n, vector<int>(n, 0));
+        int di[4] = {1, 0, 0, -1};
+        int dj[4] = {0, -1, 1, 0};
+        if(m[0][0]==1) solve(0, 0, ans, "", m, n, vis, di, dj);
+        return ans;
+    }
